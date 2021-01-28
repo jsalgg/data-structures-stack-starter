@@ -38,23 +38,11 @@ describe('Stack', () => {
       expect(stack).to.have.property('top');
       expect(stack).to.have.property('length');
     });
-  });
 
-  describe('Stack Behavior', () => {
-    it('Should remove the most recently added of three nodes (LIFO)', () => {
-      stack.push('A');
-      stack.push('B');
-      stack.push('C');
-      expect(stack.pop()).to.equal('C');
-    });
-
-    it('Should remove the newest node after newer nodes have already been added and removed', () => {
-      stack.push('A');
-      stack.push('B');
-      stack.push('C');
-      stack.push('D');
-      stack.pop()
-      expect(stack.pop()).to.equal('C');
+    it('Should not implement an Array to store values', () => {
+      for (let property in stack) {
+        expect(Array.isArray(stack[property])).to.equal(false);
+      }
     });
   });
 
@@ -119,7 +107,7 @@ describe('Stack', () => {
       });
 
       it('Should not throw an error when calling pop on an empty stack', () => {
-        expect(function() {stack.pop()}).to.not.throw();
+        expect(function () { stack.pop() }).to.not.throw();
       });
 
       it('Should return null if called on an empty stack', () => {
@@ -187,6 +175,24 @@ describe('Stack', () => {
         stack.pop();
         expect(stack.size()).to.equal(0);
       });
+    });
+  });
+
+  describe('Stack Behavior', () => {
+    it('Should remove the most recently added of three nodes (LIFO)', () => {
+      stack.push('A');
+      stack.push('B');
+      stack.push('C');
+      expect(stack.pop()).to.equal('C');
+    });
+
+    it('Should remove the newest node after newer nodes have already been added and removed', () => {
+      stack.push('A');
+      stack.push('B');
+      stack.push('C');
+      stack.push('D');
+      stack.pop()
+      expect(stack.pop()).to.equal('C');
     });
   });
 });
